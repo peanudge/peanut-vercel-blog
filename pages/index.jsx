@@ -4,18 +4,17 @@ import Link from 'next/link';
 import Layout, { siteTitle } from '../components/Layout';
 import utilStyles from '../styles/utils.module.css';
 import Date from '../components/Date';
+import { getSortedPostsData } from '../lib/posts';
 
 export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/posts');
-  const json = await response.json();
+  const allPostsData = getSortedPostsData();
   return {
     props: {
-      allPostsData: json.allPostsData,
+      allPostsData,
     },
   };
 }
 
-// eslint-disable-next-line react/prop-types
 export default function Home({ allPostsData = [] }) {
   return (
     <Layout home>
