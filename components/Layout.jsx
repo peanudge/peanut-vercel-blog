@@ -1,17 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 
-const name = 'Your Name';
-export const siteTitle = 'Next.js Sample Website';
+const name = 'PeanutLover';
+export const siteTitle = 'Peanut Dev Website';
 
 // eslint-disable-next-line react/prop-types
 export default function Layout({ children, home }) {
+  const [theme, setTheme] = useState('light');
+
+  const handleThemeToggle = () => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark') {
+      setTheme('light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  };
+
+  useEffect(() => {
+    const storagedTheme = localStorage.getItem('theme');
+    if (storagedTheme === 'dark') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.querySelector('html').classList.add('dark');
+    } else {
+      document.querySelector('html').classList.remove('dark');
+    }
+  }, [theme]);
+
   return (
-    <div className="bg-pink-50 h-screen">
+    <div className="bg-pink-50 dark:bg-black text-black dark:text-white h-screen">
       <div className={styles.container}>
         <Head>
           <link rel="icon" href="/favicon.ico" />
@@ -28,6 +58,10 @@ export default function Layout({ children, home }) {
           <meta name="og:title" content={siteTitle} />
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
+
+        <button type="button" className="w-12 h-12" onClick={handleThemeToggle}>
+          {theme === 'dark' ? <img src="/light-mode.svg" alt="light" /> : <img src="/dark-mode.svg" alt="dark" />}
+        </button>
         <header className={styles.header}>
           {home ? (
             <>
@@ -73,6 +107,5 @@ export default function Layout({ children, home }) {
         )}
       </div>
     </div>
-
   );
 }
