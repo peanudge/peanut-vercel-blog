@@ -17,6 +17,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/jsx-props-no-spreading': [0],
     'react/prop-types': [0],
     'react/no-unknown-property': [2, { ignore: ['jsx', 'global'] }],
     'jsx-a11y/anchor-is-valid': [
