@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
+import Utterances from './Utterances';
 
 const name = 'PeanutLover';
 export const siteTitle = 'Peanut Dev Website';
@@ -99,11 +100,14 @@ export default function Layout({ children, home }) {
         </header>
         <main>{children}</main>
         {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
+          <>
+            <Utterances />
+            <div className={styles.backToHome}>
+              <Link href="/">
+                <a>← Back to home</a>
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </div>

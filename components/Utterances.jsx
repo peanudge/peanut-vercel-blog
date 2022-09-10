@@ -1,0 +1,19 @@
+import React from 'react';
+
+export default React.memo(() => (
+  <section
+    ref={(elem) => {
+      if (!elem) {
+        return;
+      }
+      const scriptElement = document.createElement('script');
+      scriptElement.src = 'https://utteranc.es/client.js';
+      scriptElement.async = true;
+      scriptElement.setAttribute('repo', 'peanut-lover/vercel-blog-comment');
+      scriptElement.setAttribute('issue-term', 'pathname');
+      scriptElement.setAttribute('theme', 'github-light');
+      scriptElement.crossorigin = 'anonymous';
+      elem.appendChild(scriptElement);
+    }}
+  />
+));

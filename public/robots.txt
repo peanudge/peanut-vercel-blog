@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://peanut-vercel-blog-pehdef13u-peanut-lover.vercel.app/
+
+# Sitemaps
+Sitemap: https://peanut-vercel-blog-pehdef13u-peanut-lover.vercel.app/sitemap.xml

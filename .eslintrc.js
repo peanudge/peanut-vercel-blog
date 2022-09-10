@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    'plugin:@next/next/recommended',
     'plugin:react/recommended',
     'airbnb',
   ],
@@ -14,7 +15,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    'react', 'tailwindcss'
   ],
   rules: {
     'react/jsx-props-no-spreading': [0],
