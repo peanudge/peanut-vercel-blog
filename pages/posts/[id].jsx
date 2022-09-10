@@ -3,14 +3,13 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
-import Date from '../../components/Date';
-import Layout from '../../components/Layout';
-import CodeBlock from '../../components/CodeBlock';
+import Date from 'components/Date';
+import Layout from 'components/Layout';
+import CodeBlock from 'components/CodeBlock';
+import { getAllPostIds, getPostData } from 'lib/posts';
+import utilStyles from 'styles/utils.module.css';
 
-import { getAllPostIds, getPostData } from '../../lib/posts';
-import utilStyles from '../../styles/utils.module.css';
-
-const Button = dynamic(() => import('../../components/Button'), {
+const Button = dynamic(() => import('components/Button'), {
   loading: () => <div>Loading...</div>,
 });
 

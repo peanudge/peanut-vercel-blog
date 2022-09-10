@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '@/components/Layout';
 
 export default function Write() {
   const [showLink, setShowLink] = useState(false);
