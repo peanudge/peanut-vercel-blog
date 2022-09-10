@@ -1,10 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../components/Layout';
+
 import utilStyles from '../styles/utils.module.css';
 import Date from '../components/Date';
 import { getSortedPostsData } from '../lib/posts';
+import { siteTitle } from './_document';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -17,7 +18,7 @@ export async function getStaticProps() {
 const description = '"당신이 모르는 것이 무엇인지를 아는 것이 똑똑한 것보다 훨씬 유용하다." - 찰리멍거';
 export default function Home({ allPostsData = [] }) {
   return (
-    <Layout home>
+    <>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -42,6 +43,6 @@ export default function Home({ allPostsData = [] }) {
           ))}
         </ul>
       </section>
-    </Layout>
+    </>
   );
 }

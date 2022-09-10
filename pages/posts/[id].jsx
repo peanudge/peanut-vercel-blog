@@ -1,13 +1,13 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
 import React from 'react';
+import { useRouter } from 'next/router';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import Date from 'components/Date';
-import Layout from 'components/Layout';
 import CodeBlock from 'components/CodeBlock';
 import { getAllPostIds, getPostData } from 'lib/posts';
 import utilStyles from 'styles/utils.module.css';
+import Head from 'next/head';
+import { siteTitle } from 'pages/_document';
 
 const Button = dynamic(() => import('components/Button'), {
   loading: () => <div>Loading...</div>,
@@ -40,7 +40,8 @@ export async function getStaticProps({ params, preview }) {
   }
 }
 const components = {
-  Button, CodeBlock,
+  Button,
+  CodeBlock,
 };
 
 export default function Post({ postData, error }) {
@@ -52,18 +53,23 @@ export default function Post({ postData, error }) {
     return <div>{error}</div>;
   }
   return (
-    <Layout>
+    <>
       <Head>
-        <title>{postData.title}</title>
+        <title>{`${postData.title}- ${siteTitle}`}</title>
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
-        {postData.contentHtml && <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />}
-        {postData.mdxSource && <MDXRemote {...postData.mdxSource} components={components} /> }
+        {postData.contentHtml && (
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        )}
+        {postData.mdxSource && (
+        <MDXRemote {...postData.mdxSource} components={components} />
+        )}
       </article>
-    </Layout>
+    </>
+
   );
 }

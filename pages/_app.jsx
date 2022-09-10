@@ -1,8 +1,21 @@
-import React from 'react';
-import '../styles/global.css';
+import React, { useState } from 'react';
+import Layout from 'components/Layout';
+import 'styles/global.css';
+import { useRouter } from 'next/router';
+import { formatDistanceToNow } from 'date-fns';
 
-// eslint-disable-next-line react/prop-types
 export default function App({ Component, pageProps }) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Component {...pageProps} />;
+  const router = useRouter();
+  const [visitedTime] = useState(new Date());
+  return (
+
+    <Layout home={router.pathname === '/'}>
+      <div>
+        visited:
+        {' '}
+        {formatDistanceToNow(new Date(visitedTime), { addSuffix: true, includeSeconds: true })}
+      </div>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
