@@ -19,6 +19,7 @@
     "remark-html": "^15.0.1"
   },
   "devDependencies": {
+    "eslint-plugin-import": "^2.26.0",
     "@next/eslint-plugin-next": "^12.3.0",
     "autoprefixer": "^10.4.8",
     "eslint": "^7.32.0 || ^8.2.0",
