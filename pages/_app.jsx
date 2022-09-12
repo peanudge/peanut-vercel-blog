@@ -3,6 +3,7 @@ import Layout from 'components/Layout';
 import 'styles/global.css';
 import { useRouter } from 'next/router';
 import { formatDistanceToNow } from 'date-fns';
+import ErrorBoundary from 'components/ErrorBoundary';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -15,7 +16,10 @@ export default function App({ Component, pageProps }) {
         {' '}
         {formatDistanceToNow(new Date(visitedTime), { addSuffix: true, includeSeconds: true })}
       </div>
-      <Component {...pageProps} />
+      <ErrorBoundary>
+        <Component {...pageProps} />
+
+      </ErrorBoundary>
     </Layout>
   );
 }
